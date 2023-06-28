@@ -13,17 +13,21 @@ Utils::addRoute('register',         'registerCtrl');
 Utils::addRoute('registerShow',     'registerCtrl');
 Utils::addRoute('siteShow',         'loginCtrl');
 
-Utils::addRoute('userDelete',       'usersCtrl',        ['admin']);
-Utils::addRoute('usersShow',        'usersCtrl',        ['user', 'admin']);
+Utils::addRoute('userShow',         'userCtrl',        ['user', 'admin']);
+Utils::addRoute('userDelete',       'userEditCtrl',        ['admin']);
+Utils::addRoute('userEdit',         'userEditCtrl',	    ['admin']);
+Utils::addRoute('userSave',         'userEditCtrl',	    ['admin']);
 
-Utils::addRoute('poleObwDelete',    'poleObwCtrl',      ['admin']);
+// Utils::addRoute('userNew',     'userEditCtrl',	['admin']);
+
 Utils::addRoute('poleObwShow',      'poleObwCtrl');
+Utils::addRoute('poleObwDelete',    'poleObwCtrl',      ['admin']);
 Utils::addRoute('poleObwCompute',   'poleObwCtrl');
 
-Utils::addRoute('deltaDelete',      'deltaCtrl',        ['admin']);
 Utils::addRoute('deltaShow',        'deltaCtrl');
+Utils::addRoute('deltaDelete',      'deltaCtrl',        ['admin']);
 Utils::addRoute('deltaCompute',     'deltaCtrl');
 
-Utils::addRoute('trygDelete',      'trygCtrl',        ['admin']);
 Utils::addRoute('trygShow',        'trygCtrl');
+Utils::addRoute('trygDelete',      'trygCtrl',        ['admin']);
 Utils::addRoute('trygCompute',     'trygCtrl');

@@ -16,7 +16,7 @@
 			<header>
 				<h2>Rejestracja</h2>
 			</header>
-			<form action="{$conf->action_url}register" method="post">
+			<form action="{rel_url action="register"}" method="post">
 				<div>
 					<div class="col">
 						<div class="col-6 col-12-xsmall">
@@ -31,13 +31,11 @@
                         <div id="submit" class="col-6">
                             <input type="submit" value="Zarejestruj" />
                         </div>
-						<div class="col-6">
-						</div>
 					</div>
 				</div>
 			</form>
 			<h2>Posiadasz konto? Zaloguj się!</h2>
-			<a href="{$conf->app_url}/loginShow" class="button">Zaloguj się</a>
+			<a href="{rel_url action="loginShow"}" class="button">Zaloguj się</a>
 			<div>
 				{include file='messages.tpl'}
 			</div>

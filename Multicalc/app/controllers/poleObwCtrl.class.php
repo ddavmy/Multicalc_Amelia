@@ -111,7 +111,9 @@ class poleObwCtrl {
         //   odpowiednio zareagować wyświetlając odpowiednią informację (poprzez obiekt wiadomości Messages)
         // $this->validate();
         $username = SessionUtils::load('login', true);
-        if($username == 2){
+        $role = SessionUtils::load('role', true);
+        $this->log("ROLA=".$role);
+        if($role == 1){
             $this->records = App::getDB()->select("calc__poleobw", [
                 "[><]figury"=>["figura_id"=>"figura_id"],
                 "[><]uzytkownicy"=>["user_id"=>"user_id"]
@@ -123,6 +125,11 @@ class poleObwCtrl {
                 "calc__poleobw.obwod",
                 "figury.nazwa",
                 "uzytkownicy.username"
+            ], [
+                "LIMIT"=>10,
+                "ORDER"=>[
+                    "id"=>"DESC"
+                ]
             ]);
         } else {
             $this->records = App::getDB()->select("calc__poleobw", [
@@ -135,7 +142,11 @@ class poleObwCtrl {
                 "calc__poleobw.obwod",
                 "figury.nazwa"
             ], [
-                "calc__poleobw.user_id"=>$username
+                "calc__poleobw.user_id"=>$username,
+                "LIMIT"=>5,
+                "ORDER"=>[
+                    "id"=>"DESC"
+                ]
             ]);
         }
         $this->generateView();
@@ -172,5 +183,12 @@ class poleObwCtrl {
         App::getSmarty()->assign('records',$this->records);
         
         App::getSmarty()->display('calcPoleObw.tpl');
+    }
+    public function log($data) {
+        $output = $data;
+        if (is_array($output))
+        $output = implode(',', $output);
+
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     }
 }

@@ -9,8 +9,8 @@
 		<title>Multicalc</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{$conf->app_url}/css/main.css" />
-		<noscript><link rel="stylesheet" href="{$conf->app_url}/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="{rel_url action="css/main.css"}" />
+		<noscript><link rel="stylesheet" href="{rel_url action="css/noscript.css"}" /></noscript>
 	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
@@ -22,8 +22,8 @@
 						<div class="inner">
 
 							<!-- Logo -->
-								<a href="{$conf->action_root}" class="logo">
-									<span class="symbol"><img src="{$conf->app_url}/images/logo.png" alt="" /></span><span class="title">Multicalc</span>
+								<a href="{rel_url }" class="logo">
+									<span class="symbol"><img src="{rel_url action="images/logo.png"}" alt="" /></span><span class="title">Multicalc</span>
 								</a>
 
 							<!-- Nav -->
@@ -41,14 +41,14 @@
 						<h2>Menu</h2> 
 						<h4>Rola: {$user->role}</h4>
 						<ul>
-							<li><a href="{$conf->app_url}/siteShow">Home</a></li>
+							<li><a href="{rel_url }">Home</a></li>
 							{if $user->role != "guest"}
-								<li><a href="{$conf->app_url}/usersShow">Uzytkownicy</a></li>
-								<li><a href="{$conf->app_url}/logout">Wyloguj</a></li>
+								<li><a href="{rel_url action="userShow"}">Uzytkownicy</a></li>
+								<li><a href="{rel_url action="logout"}">Wyloguj</a></li>
 							{/if}
 							{if $user->role == "guest"}
-								<li><a href="{$conf->app_url}/loginShow">Zaloguj</a></li>
-								<li><a href="{$conf->app_url}/registerShow">Rejestracja</a></li>
+								<li><a href="{rel_url action="loginShow"}">Zaloguj</a></li>
+								<li><a href="{rel_url action="registerShow"}">Rejestracja</a></li>
 							{/if}
 						</ul>
 					</nav>
@@ -73,11 +73,11 @@
 			</div>
 
 		<!-- Scripts -->
-			<script type="text/javascript" src="{$conf->app_url}/js/jquery.min.js"></script>
-			<script type="text/javascript" src="{$conf->app_url}/js/browser.min.js"></script>
-			<script type="text/javascript" src="{$conf->app_url}/js/breakpoints.min.js"></script>
-			<script type="text/javascript" src="{$conf->app_url}/js/util.js"></script>
-			<script type="text/javascript" src="{$conf->app_url}/js/main.js"></script>
+			<script type="text/javascript" src="{rel_url action="js/jquery.min.js"}"></script>
+			<script type="text/javascript" src="{rel_url action="js/browser.min.js"}"></script>
+			<script type="text/javascript" src="{rel_url action="js/breakpoints.min.js"}"></script>
+			<script type="text/javascript" src="{rel_url action="js/util.js"}"></script>
+			<script type="text/javascript" src="{rel_url action="js/main.js"}"></script>
 
 	</body>
 </html>

@@ -6,7 +6,8 @@
 		
 {block name=content}
 			
-	<form action="{$conf->action_url}deltaCompute" method="post">
+	<form action="{rel_url action="deltaCompute"}" method="post">
+    <legend><h4>Delta oraz jej pierwiastki</h4></legend>
 		<div>
 			<div class="col">
 				<div class="col-6 col-12-medium">
@@ -19,7 +20,10 @@
 					<input type="text" name="c" autocomplete="off" placeholder="Długość c" value="{$form->c}"/>
                 </div>
                 <div id="submit" class="col-6">
-                    <input type="submit" value="Oblicz" />
+                    <ul class="actions" >
+                        <li><input type="submit" class="button" value="Oblicz" /></li>
+                        <li><a class="button" href="{rel_url action="deltaShow"}">Odśwież</a></li>
+                    </ul>
                 </div>
 				<div class="col-6">
 				</div>
@@ -57,7 +61,7 @@
             {if $user->role == "admin"}
             <td>{$r["username"]}</td>
             <td>
-                <a id="recordDelete" href="{$conf->action_url}deltaDelete/{$r['id']}">Usuń</a>
+                <a class="button" id="recordDelete" href="{rel_url action="deltaDelete" id=$r['id']}">Usuń</a>
             </td>
             {/if}
         </tr>

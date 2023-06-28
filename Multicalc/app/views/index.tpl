@@ -15,7 +15,7 @@
 							<span class="image">
 								<img src="images/pic01.jpg" alt="" />
 							</span>
-							<a href="{$conf->action_root}poleObwShow">
+							<a href="{rel_url action="poleObwShow"}">
 								<h2>Pole i obwód</h2>
 								<div class="content">
 									<p>Kwadrat Prostokąt Trójkąt Romb Trapez Równoległobok Koło</p>
@@ -26,7 +26,7 @@
 							<span class="image">
 								<img src="images/pic02.jpg" alt="" />
 							</span>
-							<a href="{$conf->action_root}deltaShow">
+							<a href="{rel_url action="deltaShow"}">
 								<h2>Delta</h2>
 								<div class="content">
 									<p>oraz jej pierwiastki</p>
@@ -37,7 +37,7 @@
 							<span class="image">
 								<img src="images/pic03.jpg" alt="" />
 							</span>
-							<a href="{$conf->action_root}trygShow">
+							<a href="{rel_url action="trygShow"}">
 								<h2>Funkcje tryginometryczne</h2>
 								<div class="content">
 									<p>kąta ostrego w trójkącie prostokątnym</p>

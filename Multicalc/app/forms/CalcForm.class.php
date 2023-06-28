@@ -12,4 +12,5 @@ class CalcForm {
 	public $h;
 	public $r;
 	public $alfa;
+	public $username;
 }

@@ -70,11 +70,18 @@ class loginCtrl {
                     ], [
                         "username"=>$this->form->login
                     ]);
-
+                    $role = App::getDB()->get("uzytkownicy", [
+                        "role_id"
+                    ], [
+                        "username"=>$this->form->login
+                    ]);
+                    $this->log("loginROLA=".$role);
                     $username = implode($username);
+                    $role = implode($role);
                     $this->role = implode($this->role);
 
                     SessionUtils::store('login', $username);
+                    SessionUtils::store('role', $role);
                     $user = new User($this->form->login, $this->role);
                     SessionUtils::storeObject('user', $user);
                     RoleUtils::addRole($this->role);
@@ -122,6 +129,7 @@ class loginCtrl {
         }  else
         $this->role = "guest";
         SessionUtils::store('login', 1);
+        SessionUtils::store('role', 2);
         $user = new User("guest", $this->role);
         SessionUtils::storeObject('user', $user);
         SessionUtils::loadObject('user', true);

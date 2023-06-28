@@ -23,7 +23,8 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	/* vertical-align: baseline; */
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -2389,7 +2390,7 @@ input, select, textarea {
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(144, 144, 144, 0.075);
+				/* background-color: rgba(144, 144, 144, 0.075); */
 			}
 
 		table td {
@@ -3341,11 +3342,13 @@ input, select, textarea {
 	}
 	body{
 		/* background-color: #fce3c96e; */
-		background: url("../images/background04.jpg") no-repeat;
-		/* -webkit-background-size: cover;
+		/* background: url("../images/background04.jpg"); */
+		-webkit-background-size: cover;
 		-moz-background-size: cover;
-		-o-background-size: cover;*/
+		-o-background-size: cover;
 		/* background-size: auto */
+		background-size:100% auto;
+		/* background-size:auto 100%; */
 	}
 	#tilesPoleObw article {
 		width: calc(33.33333% - 10em);
@@ -3354,4 +3357,34 @@ input, select, textarea {
 	}
 	#tilesPoleObw {
 		margin-top: -3em;
+	}
+	td .actions {
+		margin: 0;
+		padding: 0;
+	}
+	td, tr th{
+		margin-top: 20px;
+		text-align: center;
+	}
+	td li {
+		/* line-height: 1.5; */
+  		display: inline-block;
+  		vertical-align: middle;
+	}
+	td .actions{
+		text-align: center;
+		justify-content: center;/
+	}
+	/* table {
+		background-color: #f4f3f3; */
+	/* } */
+	#userEdit {
+		margin-top: 1em;
+	}
+	.actions {
+		display: flex;
+  		justify-content: center;
+	}
+	.userEdit {
+		text-align: center;
 	}

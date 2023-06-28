@@ -7,41 +7,11 @@ use core\Utils;
 use core\SessionUtils;
 use core\ParamUtils;
 
-class usersCtrl {
+class userCtrl {
+    private $form;
+    public $records;
 
-    private $id;
-    private $records;
-
-    //validacja danych przed wyswietleniem do edycji
-    public function validateEdit() {
-        //pobierz parametry na potrzeby wyswietlenia danych do edycji
-        //z widoku listy osób (parametr jest wymagany)
-        $this->id = ParamUtils::getFromCleanURL(1, true, 'Błędne wywołanie aplikacji');
-        return !App::getMessages()->isError();
-    }
-
-    public function action_userDelete() {
-        // 1. walidacja id osoby do usuniecia
-        if ($this->validateEdit()) {
-
-            try {
-                // 2. usunięcie rekordu
-                App::getDB()->delete("uzytkownicy", [
-                    "user_id" => $this->id
-                ]);
-                Utils::addInfoMessage('Pomyślnie usunięto rekord');
-            } catch (\PDOException $e) {
-                Utils::addErrorMessage('Wystąpił błąd podczas usuwania rekordu');
-                if (App::getConf()->debug)
-                    Utils::addErrorMessage($e->getMessage());
-            }
-        }
-
-        // 3. Przekierowanie na stronę listy osób
-        $this->usersList();
-    }
-
-    public function usersList() {
+    public function userList() {
         // 1. Walidacja danych formularza (z pobraniem)
         // - W tej aplikacji walidacja nie jest potrzebna, ponieważ nie wystąpią błedy podczas podawania nazwiska.
         //   Jednak pozostawiono ją, ponieważ gdyby uzytkownik wprowadzał np. datę, lub wartość numeryczną, to trzeba
@@ -67,8 +37,8 @@ class usersCtrl {
         $this->generateView();
     }
 
-    public function action_usersShow(){
-        $this->usersList();
+    public function action_userShow(){
+        $this->userList();
 	}
 
     public function generateView(){
@@ -77,7 +47,7 @@ class usersCtrl {
 
         App::getSmarty()->assign('records',$this->records);
         
-        App::getSmarty()->display('users.tpl');
+        App::getSmarty()->display('user.tpl');
     }
 
 }

@@ -7,13 +7,17 @@
 {block name=content}
 			
 	<form action="{$conf->action_url}trygCompute" method="post">
+    <legend><h4>Funkcje trygonometryczne</h4></legend>
 		<div>
 			<div class="col">
 				<div class="col-6 col-12-medium">
                     <input type="text" name="alfa" autocomplete="off" placeholder="Kąt alfa" value="{$form->alfa}"/>
                 </div>
                 <div id="submit" class="col-6">
-                    <input type="submit" value="Oblicz" />
+                    <ul class="actions" >
+                        <li><input type="submit" class="button" value="Oblicz" /></li>
+                        <li><a class="button" href="{rel_url action="trygShow"}">Odśwież</a></li>
+                    </ul>
                 </div>
 				<div class="col-6">
 				</div>
@@ -49,7 +53,7 @@
             {if $user->role == "admin"}
             <td td>{$r["username"]}</td>
             <td>
-                <a id="recordDelete" href="{$conf->action_url}trygDelete/{$r['id']}">Usuń</a>
+                <a class="button" id="recordDelete" href="{rel_url action="trygDelete" id=$r['id']}">Usuń</a>
             </td>
             {/if}
         </tr>

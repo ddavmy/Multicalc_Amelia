@@ -110,7 +110,8 @@ class trygCtrl {
         //   odpowiednio zareagować wyświetlając odpowiednią informację (poprzez obiekt wiadomości Messages)
         // $this->validate();
         $username = SessionUtils::load('login', true);
-        if($username == 2){
+        $role = SessionUtils::load('role', true);
+        if($role == 1){
             $this->records = App::getDB()->select("calc__tryg", [
                 "[><]uzytkownicy"=>["user_id"=>"user_id"]
             ], [
@@ -121,6 +122,11 @@ class trygCtrl {
                 "calc__tryg.tg",
                 "calc__tryg.ctg",
                 "uzytkownicy.username"
+            ], [
+                "LIMIT"=>10,
+                "ORDER"=>[
+                    "id"=>"DESC"
+                ]
             ]);
         } else {
             $this->records = App::getDB()->select("calc__tryg", [
@@ -131,7 +137,11 @@ class trygCtrl {
                 "tg",
                 "ctg"
             ], [
-                "user_id"=>$username
+                "user_id"=>$username,
+                "LIMIT"=>5,
+                "ORDER"=>[
+                    "id"=>"DESC"
+                ]
             ]);
         }
         $this->generateView();
@@ -152,7 +162,11 @@ class trygCtrl {
             Utils::addWynikMessage('cos = '.$this->cos);
             $this->tg = round(tan(deg2rad($this->form->alfa)),7);
             Utils::addWynikMessage('tg = '.$this->tg);
-            $this->ctg = round(1/tan(deg2rad($this->form->alfa)),7);
+            if($this->form->alfa == 0)  {
+                $this->ctg = "brak";
+            } else {
+                $this->ctg = round(1/tan(deg2rad($this->form->alfa)),7);
+            }
             Utils::addWynikMessage('ctg = '.$this->ctg);
 
         }

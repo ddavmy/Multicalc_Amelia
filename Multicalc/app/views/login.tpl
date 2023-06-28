@@ -16,7 +16,7 @@
 			<header>
 				<h2>Logowanie</h2>
 			</header>
-			<form action="{$conf->action_url}login" method="post">
+			<form action="{rel_url action="login"}" method="post">
 				<div>
 					<div class="col">
 						<div class="col-6 col-12-medium">
@@ -34,7 +34,7 @@
 				</div>
 			</form>
 				<h2>Nie masz jeszcze konta?</h2>
-				<a href="{$conf->app_url}/registerShow" class="button">Zarejestruj się</a>
+				<a href="{rel_url action="registerShow"}" class="button">Zarejestruj się</a>
 			<div>
 				{include file='messages.tpl'}
 			</div>

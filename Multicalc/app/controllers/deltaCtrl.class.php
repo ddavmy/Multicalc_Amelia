@@ -122,7 +122,10 @@ class deltaCtrl {
         //   odpowiednio zareagować wyświetlając odpowiednią informację (poprzez obiekt wiadomości Messages)
         // $this->validate();
         $username = SessionUtils::load('login', true);
-        if($username == 2){
+        $role = SessionUtils::load('role', true);
+        $this->log("deltaRole=".$role);
+        $this->log("deltaUserID=".$username);
+        if($role == 1){
             $this->records = App::getDB()->select("calc__delta", [
                 "[><]uzytkownicy"=>["user_id"=>"user_id"]
             ], [
@@ -135,7 +138,10 @@ class deltaCtrl {
                 "calc__delta.x2",
                 "uzytkownicy.username"
             ], [
-                "LIMIT"=>3
+                "LIMIT"=>10,
+                "ORDER"=>[
+                    "id"=>"DESC"
+                ]
             ]);
         } else {
             $this->records = App::getDB()->select("calc__delta", [
@@ -147,7 +153,11 @@ class deltaCtrl {
                 "x1",
                 "x2"
             ], [
-                "user_id"=>$username
+                "user_id"=>$username,
+                "LIMIT"=>5,
+                "ORDER"=>[
+                    "id"=>"DESC"
+                ]
             ]);
         }
 
@@ -165,8 +175,8 @@ class deltaCtrl {
             $this->form->a = floatval($this->form->a);
             $this->form->b = floatval($this->form->b);
             $this->form->c = floatval($this->form->c);
-            $this->x1 = '-';
-            $this->x2 = '-';
+            $this->x1 = 'brak';
+            $this->x2 = 'brak';
             Utils::addInfoMessage('Parametry poprawne,wykonano obliczenia');
             
             $this->delta = pow($this->form->b, 2) - 4 * $this->form->a * $this->form->c;

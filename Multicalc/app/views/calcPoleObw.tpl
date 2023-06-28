@@ -9,7 +9,7 @@
     <section id="tilesPoleObw" class="tiles">
 		<article class="style1">
 			<span class="image">
-				<img src="images/pic01.jpg" alt="" />
+				<img src="{url action="images/pic01.jpg"}" alt="" />
 			</span>
 			<a>
 				<h2>Kwadrat</h2>
@@ -17,7 +17,7 @@
 		</article>
 		<article class="style1">
 			<span class="image">
-				<img src="images/pic01.jpg" alt="" />
+				<img src="{url action="images/pic01.jpg"}" alt="" />
 			</span>
 			<a>
 				<h2>Prostokąt</h2>
@@ -25,7 +25,7 @@
 		</article>
 		<article class="style1">
 			<span class="image">
-				<img src="images/pic01.jpg" alt="" />
+				<img src="{url action="images/pic01.jpg"}" alt="" />
 			</span>
 			<a>
 				<h2>Trójkąt</h2>
@@ -33,7 +33,7 @@
         </article>
 		<article class="style1">
 			<span class="image">
-				<img src="images/pic01.jpg" alt="" />
+				<img src="{url action="images/pic01.jpg"}" alt="" />
 			</span>
 			<a>
 				<h2>Romb</h2>
@@ -41,7 +41,7 @@
         </article>
 		<article class="style1">
 			<span class="image">
-				<img src="images/pic01.jpg" alt="" />
+				<img src="{url action="images/pic01.jpg"}" alt="" />
 			</span>
 			<a>
 				<h2>Trapez</h2>
@@ -49,7 +49,7 @@
         </article>
 		<article class="style1">
 			<span class="image">
-				<img src="images/pic01.jpg" alt="" />
+				<img src="{url action="images/pic01.jpg"}" alt="" />
 			</span>
 			<a>
 				<h2>Równoległobok</h2>
@@ -57,7 +57,7 @@
         </article>
 		<article class="style1">
 			<span class="image">
-				<img src="images/pic01.jpg" alt="" />
+				<img src="{url action="images/pic01.jpg"}" alt="" />
 			</span>
 			<a>
 				<h2>Koło</h2>
@@ -65,7 +65,7 @@
         </article>
 		<article class="style3">
 	    	<span class="image">
-	    		<img src="images/pic01.jpg" alt="" />
+	    		<img src="{url action="images/pic01.jpg"}" alt="" />
 	    	</span>
 	    	<a>
 	    		<h2>Coming next</h2>
@@ -78,7 +78,7 @@
 
 
     <section class="figuraProstokąt">
-        <form action="{$conf->action_url}poleObwCompute#formularz" method="post" id="formularz">
+        <form action="{rel_url action="poleObwCompute#formularz"}" method="post" id="formularz">
             <div>
                 <div class="col">
                     <div class="col-6 col-12-medium">
@@ -88,7 +88,10 @@
                         <input type="text" name="b" autocomplete="off" placeholder="Długość b" value="{$form->b}"/>
                     </div>
                     <div id="submit" class="col-6">
-                        <input type="submit" value="Oblicz" />
+						<ul class="actions" >
+							<li><input type="submit" class="button" value="Oblicz" /></li>
+							<li><a class="button" href="{rel_url action="poleObwShow"}">Odśwież</a></li>
+						</ul>
                     </div>
                     <div class="col-6">
                     </div>
@@ -124,7 +127,7 @@
                 {if $user->role == "admin"}
                 <td>{$r["username"]}</td>
                 <td>
-                    <a id="recordDelete" href="{$conf->action_url}poleObwDelete/{$r['id']}">Usuń</a>
+                    <a class="button" id="recordDelete" href="{rel_url action="poleObwDelete" id=$r['id']}">Usuń</a>
                 </td>
                 {/if}
             </tr>
