@@ -11,7 +11,7 @@ use core\Utils;
 use core\ParamUtils;
 use app\forms\calcForm;
 
-class trygCtrl {
+class calcTrygCtrl {
 
     private $form;
     private $sin;
@@ -22,20 +22,15 @@ class trygCtrl {
     private $records;
 
     public function __construct() {
-        //stworzenie potrzebnych obiektów
         $this->form = new calcForm();
     }
 
-    // Walidacja danych przed zapisem (nowe dane lub edycja).
     public function validate() {
-        //0. Pobranie parametrów z walidacją
-        // $this->form->id = ParamUtils::getFromRequest('id', true, 'Błędne wywołanie aplikacji');
         $this->form->alfa = ParamUtils::getFromRequest('alfa', true);
 
         if (App::getMessages()->isError())
             return false;
 
-        // 1. sprawdzenie czy wartości wymagane nie są puste
         if($this->form->alfa < 0) {
             Utils::addErrorMessage('Kąt alfa musi być dodatni!');
         } elseif($this->form->alfa > 90) {
@@ -47,20 +42,15 @@ class trygCtrl {
         return !App::getMessages()->isError();
     }
 
-    //validacja danych przed wyswietleniem do edycji
     public function validateEdit() {
-        //pobierz parametry na potrzeby wyswietlenia danych do edycji
-        //z widoku listy osób (parametr jest wymagany)
         $this->form->id = ParamUtils::getFromCleanURL(1, true, 'Błędne wywołanie aplikacji');
         return !App::getMessages()->isError();
     }
 
-    public function action_trygDelete() {
-        // 1. walidacja id osoby do usuniecia
+    public function action_calcTrygDelete() {
         if ($this->validateEdit()) {
 
             try {
-                // 2. usunięcie rekordu
                 App::getDB()->delete("calc__tryg", [
                     "id" => $this->form->id
                 ]);
@@ -71,17 +61,13 @@ class trygCtrl {
                     Utils::addErrorMessage($e->getMessage());
             }
         }
-        // 3. Przekierowanie na stronę listy osób
         $this->wynikList();
     }
 
     public function wynikSave() {
-        // 1. Walidacja danych formularza (z pobraniem)
         if ($this->validate()) {
             $username = SessionUtils::load('login', true);
-            // 2. Zapis danych w bazie
             try {
-                //2.1 Nowy rekord
                 App::getDB()->insert("calc__tryg", [
                     "alfa"=>$this->form->alfa,
                     "sin"=>$this->sin,
@@ -90,25 +76,17 @@ class trygCtrl {
                     "ctg"=>$this->ctg,
                     "user_id"=>$username
                 ]);
-                // Utils::addInfoMessage('Pomyślnie zapisano rekord');
             } catch (\PDOException $e) {
                 Utils::addErrorMessage('Wystąpił nieoczekiwany błąd podczas zapisu rekordu');
                 if (App::getConf()->debug)
                     Utils::addErrorMessage($e->getMessage());
             }
 
-            // 3b. Po zapisie przejdź na stronę listy osób (w ramach tego samego żądania http)
-            // App::getRouter()->forwardTo('calcShow');
         }
         $this->wynikList();
     }
 
     public function wynikList() {
-        // 1. Walidacja danych formularza (z pobraniem)
-        // - W tej aplikacji walidacja nie jest potrzebna, ponieważ nie wystąpią błedy podczas podawania nazwiska.
-        //   Jednak pozostawiono ją, ponieważ gdyby uzytkownik wprowadzał np. datę, lub wartość numeryczną, to trzeba
-        //   odpowiednio zareagować wyświetlając odpowiednią informację (poprzez obiekt wiadomości Messages)
-        // $this->validate();
         $username = SessionUtils::load('login', true);
         $role = SessionUtils::load('role', true);
         if($role == 1){
@@ -147,11 +125,11 @@ class trygCtrl {
         $this->generateView();
     }
 
-    public function action_trygShow(){
+    public function action_calcTrygShow(){
         $this->wynikList();
 	}
 
-    public function action_trygCompute(){
+    public function action_calcTrygCompute(){
         if ($this->validate()) {
             
             $this->form->alfa = floatval($this->form->alfa);

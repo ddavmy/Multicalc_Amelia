@@ -1,12 +1,8 @@
 {extends file="main.tpl"}
-
-{block name=header}{/block}
-
-{block name=footer}{/block}
 		
 {block name=content}
 			
-	<form action="{rel_url action="deltaCompute"}" method="post">
+	<form action="{rel_url action="calcDeltaCompute"}" id="form" method="post">
     <legend><h4>Delta oraz jej pierwiastki</h4></legend>
 		<div>
 			<div class="col">
@@ -22,7 +18,7 @@
                 <div id="submit" class="col-6">
                     <ul class="actions" >
                         <li><input type="submit" class="button" value="Oblicz" /></li>
-                        <li><a class="button" href="{rel_url action="deltaShow"}">Odśwież</a></li>
+                        <li><a class="button" href="{rel_url action="calcDeltaShow"}">Odśwież</a></li>
                     </ul>
                 </div>
 				<div class="col-6">
@@ -61,7 +57,7 @@
             {if $user->role == "admin"}
             <td>{$r["username"]}</td>
             <td>
-                <a class="button" id="recordDelete" href="{rel_url action="deltaDelete" id=$r['id']}">Usuń</a>
+                <a class="button" id="recordDelete" href="{rel_url action="calcDeltaDelete" id=$r['id']}#form">Usuń</a>
             </td>
             {/if}
         </tr>

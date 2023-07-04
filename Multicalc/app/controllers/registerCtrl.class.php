@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+error_reporting(0);
 use app\transfer\User;
 use core\App;
 use core\Utils;

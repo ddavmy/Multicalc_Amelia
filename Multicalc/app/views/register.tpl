@@ -1,13 +1,7 @@
 {extends file="main.tpl"}
-
-{block name=header}{/block}
-
-{block name=footer}{/block}
 		
 {block name=content}
 
-
-<div id="wrapper">
 
 	<!-- Main -->
 	<div id="main">
@@ -41,6 +35,5 @@
 			</div>
 		</article>
 	</div>
-</div>
 
 {/block}

@@ -1,8 +1,4 @@
 {extends file="main.tpl"}
-
-{block name=header}{/block}
-
-{block name=footer}{/block}
 		
 {block name=content}
 
@@ -13,7 +9,7 @@
         <tr>
             <th>Nazwa</th>
             {if $user->role == "admin"}
-                {* <th>Hasło</th> *}
+                <th>Hasło</th>
                 <th>Email</th>
             {/if}
             <th>Rola</th>
@@ -28,19 +24,21 @@
         <tr>
             <td>{$r["username"]}</td>
             {if $user->role == "admin"}
-                {* <td>{$r["password"]}</td> *}
+                <td>{$r["password"]}</td>
                 <td>{$r["email"]}</td>
             {/if}
             <td>{$r["role_name"]}</td>
             {if $user->role == "admin"}
             <td class="opcje">
                 <ul class="actions">
+                {if $r["username"] != "guest"}
                     <li>
                         <a class="button" href="{rel_url action="userEdit" id=$r['user_id']}">Edytuj</a>
                     </li>
                     <li>
                         <a class="button" href="{rel_url action="userDelete" id=$r['user_id']}">Usuń</a>
                     </li>
+                {/if}
                 </ul>
                 
             </td>

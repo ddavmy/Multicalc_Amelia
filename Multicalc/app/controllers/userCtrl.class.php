@@ -12,13 +12,6 @@ class userCtrl {
     public $records;
 
     public function userList() {
-        // 1. Walidacja danych formularza (z pobraniem)
-        // - W tej aplikacji walidacja nie jest potrzebna, ponieważ nie wystąpią błedy podczas podawania nazwiska.
-        //   Jednak pozostawiono ją, ponieważ gdyby uzytkownik wprowadzał np. datę, lub wartość numeryczną, to trzeba
-        //   odpowiednio zareagować wyświetlając odpowiednią informację (poprzez obiekt wiadomości Messages)
-        // $this->validate();
-
-        //SELECT uzytkownicy.username, uzytkownicy.password, role.role_name FROM uzytkownicy INNER JOIN role ON uzytkownicy.user_id=role.role_id;
         try {
             $this->records = App::getDB()->select("uzytkownicy", [
                 "[><]role"=>["role_id"=>"role_id"]

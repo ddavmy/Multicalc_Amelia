@@ -7,6 +7,7 @@ class CalcForm {
 	public $a;
 	public $b;
 	public $c;
+	public $d;
 	public $e;
 	public $f;
 	public $h;

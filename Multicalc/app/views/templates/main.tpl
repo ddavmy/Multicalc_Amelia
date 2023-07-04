@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{rel_url action="css/main.css"}" />
 		<noscript><link rel="stylesheet" href="{rel_url action="css/noscript.css"}" /></noscript>
-	</head>
+		</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -39,7 +39,7 @@
 				<!-- Menu -->
 					<nav id="menu">
 						<h2>Menu</h2> 
-						<h4>Rola: {$user->role}</h4>
+							<h4>Jesteś {$user->login}{if $user->login != "guest"}, {$user->role}{/if}</h4>
 						<ul>
 							<li><a href="{rel_url }">Home</a></li>
 							{if $user->role != "guest"}
@@ -73,11 +73,13 @@
 			</div>
 
 		<!-- Scripts -->
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script type="text/javascript" src="{rel_url action="js/search.js"}"></script>
 			<script type="text/javascript" src="{rel_url action="js/jquery.min.js"}"></script>
 			<script type="text/javascript" src="{rel_url action="js/browser.min.js"}"></script>
 			<script type="text/javascript" src="{rel_url action="js/breakpoints.min.js"}"></script>
 			<script type="text/javascript" src="{rel_url action="js/util.js"}"></script>
 			<script type="text/javascript" src="{rel_url action="js/main.js"}"></script>
-
+			
 	</body>
 </html>

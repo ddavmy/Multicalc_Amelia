@@ -1,10 +1,11 @@
 {extends file="main.tpl"}
 
 {block name=content}
+    
 <div class="bottom-margin">
 <form action="{rel_url action="userSave"}" method="post" class="pure-form pure-form-aligned">
 	<fieldset>
-		<legend class="userEdit">Edytuj nazwę użytkownika, email oraz role danego użytkownika [{$form->username}]</legend>
+		<legend class="userEdit">Edytuj nazwę użytkownika, email oraz role danego użytkownika</legend>
         <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
                 <input class="userEdit" id="username" type="text" placeholder="Nazwa użytkownika" name="username" value="{$form->username}">

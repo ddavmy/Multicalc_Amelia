@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-06-28 03:11:17
+/* Smarty version 4.3.0, created on 2023-07-04 05:47:02
   from 'E:\dev\xampp\htdocs\projekty\Multicalc\app\views\calcDelta.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_649b88b5cae282_84860334',
+  'unifunc' => 'content_64a396362c18f0_21710112',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '60e917e576508644de737be9543c799fb5f7007d' => 
     array (
       0 => 'E:\\dev\\xampp\\htdocs\\projekty\\Multicalc\\app\\views\\calcDelta.tpl',
-      1 => 1687914667,
+      1 => 1688442379,
       2 => 'file',
     ),
   ),
@@ -21,67 +21,31 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:messages.tpl' => 1,
   ),
 ),false)) {
-function content_649b88b5cae282_84860334 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64a396362c18f0_21710112 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
-
-<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1139379824649b88b5c92b10_50676037', 'header');
-?>
-
-
-<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_654323874649b88b5c93532_69005335', 'footer');
-?>
-
 		
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1886674835649b88b5c93bd2_83921655', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_129014306864a3963629ee62_42455281', 'content');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
-/* {block 'header'} */
-class Block_1139379824649b88b5c92b10_50676037 extends Smarty_Internal_Block
-{
-public $subBlocks = array (
-  'header' => 
-  array (
-    0 => 'Block_1139379824649b88b5c92b10_50676037',
-  ),
-);
-public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
-}
-}
-/* {/block 'header'} */
-/* {block 'footer'} */
-class Block_654323874649b88b5c93532_69005335 extends Smarty_Internal_Block
-{
-public $subBlocks = array (
-  'footer' => 
-  array (
-    0 => 'Block_654323874649b88b5c93532_69005335',
-  ),
-);
-public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
-}
-}
-/* {/block 'footer'} */
 /* {block 'content'} */
-class Block_1886674835649b88b5c93bd2_83921655 extends Smarty_Internal_Block
+class Block_129014306864a3963629ee62_42455281 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1886674835649b88b5c93bd2_83921655',
+    0 => 'Block_129014306864a3963629ee62_42455281',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 			
-	<form action="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['rel_url'][0], array( array('action'=>"deltaCompute"),$_smarty_tpl ) );?>
-" method="post">
+	<form action="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['rel_url'][0], array( array('action'=>"calcDeltaCompute"),$_smarty_tpl ) );?>
+" id="form" method="post">
     <legend><h4>Delta oraz jej pierwiastki</h4></legend>
 		<div>
 			<div class="col">
@@ -100,7 +64,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                 <div id="submit" class="col-6">
                     <ul class="actions" >
                         <li><input type="submit" class="button" value="Oblicz" /></li>
-                        <li><a class="button" href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['rel_url'][0], array( array('action'=>"deltaShow"),$_smarty_tpl ) );?>
+                        <li><a class="button" href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['rel_url'][0], array( array('action'=>"calcDeltaShow"),$_smarty_tpl ) );?>
 ">Odśwież</a></li>
                     </ul>
                 </div>
@@ -142,8 +106,8 @@ $_smarty_tpl->tpl_vars['r']->do_else = false;
 </td><td><?php echo $_smarty_tpl->tpl_vars['r']->value["x1"];?>
 </td><td><?php echo $_smarty_tpl->tpl_vars['r']->value["x2"];?>
 </td><?php if ($_smarty_tpl->tpl_vars['user']->value->role == "admin") {?><td><?php echo $_smarty_tpl->tpl_vars['r']->value["username"];?>
-</td><td><a class="button" id="recordDelete" href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['rel_url'][0], array( array('action'=>"deltaDelete",'id'=>$_smarty_tpl->tpl_vars['r']->value['id']),$_smarty_tpl ) );?>
-">Usuń</a></td><?php }?></tr>
+</td><td><a class="button" id="recordDelete" href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['rel_url'][0], array( array('action'=>"calcDeltaDelete",'id'=>$_smarty_tpl->tpl_vars['r']->value['id']),$_smarty_tpl ) );?>
+#form">Usuń</a></td><?php }?></tr>
     <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
