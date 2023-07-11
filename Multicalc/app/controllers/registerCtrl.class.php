@@ -13,7 +13,6 @@ use app\forms\LoginForm;
 class registerCtrl {
 
     private $form;
-    private $records;
     private $password;
 
     public function __construct() {
@@ -26,13 +25,6 @@ class registerCtrl {
         $this->form->email = ParamUtils::getFromRequest('email');
         $this->form->pass = ParamUtils::getFromRequest('pass');
         
-        //nie ma sensu walidować dalej, gdy brak parametrów
-        if (!isset($this->form->login))
-            return false;
-
-        //zahaszowanie hasła
-        $this->password = password_hash($this->form->pass, PASSWORD_DEFAULT);
-
         // sprawdzenie, czy potrzebne wartości zostały przekazane
         if (empty($this->form->login)) {
             Utils::addErrorMessage('Nie podano loginu');
@@ -50,7 +42,7 @@ class registerCtrl {
 
     public function accountList() {
         try {
-            $this->records = App::getDB()->count("uzytkownicy", [
+            $records = App::getDB()->count("uzytkownicy", [
                 "username" => $this->form->login
         ]);
         } catch (\PDOException $e) {
@@ -58,22 +50,21 @@ class registerCtrl {
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }
-        if($this->records > 0){
+        if($records > 0){
             Utils::addErrorMessage("Istnieje już taki użytkownik!");
-            $this->generateView();
+            App::getRouter()->forwardTo('registerShow');
         }
         return !App::getMessages()->isError();
     }
 
     public function action_register() {
-
         // 1. Walidacja danych formularza (z pobraniem)
         if ($this->validate()) {
             // 2. Zapis danych w bazie
             try {
                 App::getDB()->insert("uzytkownicy", [
                    "username" => $this->form->login, 
-                   "password" => $this->password,
+                   "password" => password_hash($this->form->pass, PASSWORD_DEFAULT),
                    "email" => $this->form->email
             ]);
             Utils::addInfoMessage('Pomyślnie zarejestrowano');
@@ -83,8 +74,7 @@ class registerCtrl {
                     Utils::addErrorMessage($e->getMessage());
             }
         }
-        // $this->generateView();
-        App::getRouter()->redirectTo("loginShow");
+        App::getRouter()->forwardTo("loginShow");
     }
 
     public function action_registerShow() {
@@ -92,12 +82,8 @@ class registerCtrl {
     }
 
     public function generateView() {
-
         App::getSmarty()->assign('user',SessionUtils::loadObject('user', true));
-
         App::getSmarty()->assign('form', $this->form); // dane formularza do widoku
-        App::getSmarty()->assign('records', $this->records); // dane formularza do widoku
-
         App::getSmarty()->display('register.tpl');
     }
 

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-07-12 00:51:03
-  from 'E:\dev\xampp\htdocs\projekty\Multicalc\app\views\templates\main.tpl' */
+/* Smarty version 4.3.0, created on 2023-07-11 13:33:39
+  from 'C:\xampp\htdocs\projekty\Multicalc\app\views\templates\main.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_64addcd72e1d62_38175940',
+  'unifunc' => 'content_64ad3e139d34a1_73046864',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'bffff77b7e68fc4754fa4807869f70f9b7902ef7' => 
+    '64a6244038fb2252ac4947edfbbfc942490e441f' => 
     array (
-      0 => 'E:\\dev\\xampp\\htdocs\\projekty\\Multicalc\\app\\views\\templates\\main.tpl',
+      0 => 'C:\\xampp\\htdocs\\projekty\\Multicalc\\app\\views\\templates\\main.tpl',
       1 => 1688953252,
       2 => 'file',
     ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64addcd72e1d62_38175940 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ad3e139d34a1_73046864 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -45,7 +45,7 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 			<div id="wrapper">
 
                 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_191929944464addcd72d95d4_94006307', 'header');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_96076165364ad3e139c04b1_48528651', 'header');
 ?>
 
 				<!-- Header -->
@@ -66,7 +66,7 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_191929944464addcd7
 									</ul>
 								</nav>
 							<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_153821567764addcd72da829_50400182', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_41434983164ad3e139c20d5_93244335', 'content');
 ?>
 
 						</div>
@@ -99,7 +99,7 @@ if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>, <?php echo $_s
 
 					</div> <!-- end of main -->
                 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_33812895364addcd72df532_88306765', 'footer');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_161239417764ad3e139ce4e0_64706597', 'footer');
 ?>
 
 				<!-- Footer -->
@@ -151,12 +151,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_33812895364addcd72
 	</body>
 </html><?php }
 /* {block 'header'} */
-class Block_191929944464addcd72d95d4_94006307 extends Smarty_Internal_Block
+class Block_96076165364ad3e139c04b1_48528651 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header' => 
   array (
-    0 => 'Block_191929944464addcd72d95d4_94006307',
+    0 => 'Block_96076165364ad3e139c04b1_48528651',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -164,12 +164,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'header'} */
 /* {block 'content'} */
-class Block_153821567764addcd72da829_50400182 extends Smarty_Internal_Block
+class Block_41434983164ad3e139c20d5_93244335 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_153821567764addcd72da829_50400182',
+    0 => 'Block_41434983164ad3e139c20d5_93244335',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -179,12 +179,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'content'} */
 /* {block 'footer'} */
-class Block_33812895364addcd72df532_88306765 extends Smarty_Internal_Block
+class Block_161239417764ad3e139ce4e0_64706597 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'footer' => 
   array (
-    0 => 'Block_33812895364addcd72df532_88306765',
+    0 => 'Block_161239417764ad3e139ce4e0_64706597',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

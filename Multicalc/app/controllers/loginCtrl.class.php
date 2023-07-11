@@ -13,8 +13,8 @@ use app\forms\LoginForm;
 class loginCtrl {
 
     private $form;
-    private $role;
-    private $calc;
+    private $userData;
+    private $calcs;
 
     public function __construct() {
 
@@ -39,72 +39,64 @@ class loginCtrl {
     public function validateLogin() {
 
         if($this->validate()) {
-            $usernameExists = App::getDB()->has("uzytkownicy", [
+            $hashedPwdInDB = App::getDB()->get("uzytkownicy", "password", [
                 "username"=>$this->form->login
             ]);
 
+            if(empty($hashedPwdInDB)) {
+                Utils::addErrorMessage("Takie konto nie istnieje!");
+                return !app::getMessages()->isError();
+            }
+            
+            $pwdVerify = password_verify($this->form->pass, $hashedPwdInDB);
     
-            if($usernameExists) {
-                $hashedPwdInDB = App::getDB()->get("uzytkownicy", [
-                    "password"
-                ], [
-                    "username"=>$this->form->login
-                ]);
-                $hashedPwdInDB = implode($hashedPwdInDB);
-
-        
-                $pwdVerify = password_verify($this->form->pass, $hashedPwdInDB);
                 if($pwdVerify == 1) {
             
-                    $this->role = App::getDB()->get("uzytkownicy", [
+                    $this->userData = App::getDB()->get("uzytkownicy", [
                         "[><]role"=>["role_id"=>"role_id"]
                     ], [
+                        "uzytkownicy.user_id",
+                        "uzytkownicy.username",
+                        "uzytkownicy.password",
+                        "uzytkownicy.email",
                         "role.role_name"
                     ], [
                         "username"=>$this->form->login,
                         "password"=>$hashedPwdInDB
                     ]);
-                    
-                    $username = App::getDB()->get("uzytkownicy", [
-                        "user_id"
-                    ], [
-                        "username"=>$this->form->login
-                    ]);
-                    $role = App::getDB()->get("uzytkownicy", [
-                        "role_id"
-                    ], [
-                        "username"=>$this->form->login
-                    ]);
-                    $this->log("loginROLA=".$role);
-                    $username = implode($username);
-                    $role = implode($role);
-                    $this->role = implode($this->role);
-
-                    SessionUtils::store('login', $username);
-                    SessionUtils::store('role', $role);
-                    $user = new User($this->form->login, $this->role);
+                    $user = new User($this->userData['user_id'], $this->userData['username'], $this->userData['role_name']);
                     SessionUtils::storeObject('user', $user);
-                    RoleUtils::addRole($this->role);
+                    RoleUtils::addRole($this->userData['role_name']);
                 } else {
-                    Utils::addErrorMessage("Takie konto nie istnieje");
+                    Utils::addErrorMessage("Takie konto nie istnieje!");
                 }
             } else {
                 Utils::addErrorMessage("Takie konto nie istnieje!");
             }
-        }
-
         return !app::getMessages()->isError();
     }
 
     public function action_login() {
         if ($this->validateLogin()) {
-    
             Utils::addInfoMessage('Poprawnie zalogowano do systemu');
-            $this->roleTest();
             App::getRouter()->redirectTo("siteShow");
-    
         } else {
+            $this->defUser();
             $this->generateView();
+        }
+    }
+
+    public function defUser() {
+        $check = ParamUtils::getFromSession('user', false, null, null);
+        if(empty($check)) {
+            $this->userData = App::getDB()->get("uzytkownicy", [
+                "user_id",
+                "username",
+            ], [
+                "username"=>"guest"
+            ]);
+            $user = new User($this->userData['user_id'], $this->userData['username'], null);
+            SessionUtils::storeObject('user', $user);
         }
     }
 
@@ -121,41 +113,29 @@ class loginCtrl {
         App::getRouter()->redirectTo("loginShow");
 
     }
-
-    public function roleTest() {
-        if(RoleUtils::inRole("admin")) {
-            return true;
-        } elseif(RoleUtils::inRole("user")) {
-            return true;
-        }  else
-        $this->role = "guest";
-        SessionUtils::store('login', 1);
-        SessionUtils::store('role', 2);
-        $user = new User("guest", $this->role);
-        SessionUtils::storeObject('user', $user);
-        SessionUtils::loadObject('user', true);
-        RoleUtils::addRole($this->role);
-    }
  
     public function generateView() {
-        $this->roleTest();
+        $this->defUser();
         App::getSmarty()->assign('user',SessionUtils::loadObject('user', true));
-
         App::getSmarty()->assign('form', $this->form);
         App::getSmarty()->display('login.tpl');
     }
 
     public function genArticle() {
-        $this->calc = App::getDB()->select("calc", "*");
+        $this->calcs = App::getDB()->query("
+            SELECT *
+            FROM calcs
+            ORDER BY CASE WHEN calc_id = 0 THEN 1 ELSE 0 END ASC, calc_id ASC
+        ")->fetchAll();
 
         return !app::getMessages()->isError();
     }
 
     public function action_siteShow() {
-        $this->roleTest();
+        $this->defUser();
         $this->genArticle();
         App::getSmarty()->assign('user',SessionUtils::loadObject('user', true));
-        App::getSmarty()->assign('calc', $this->calc);
+        App::getSmarty()->assign('calcs', $this->calcs);
         App::getSmarty()->display('index.tpl');
     }
 

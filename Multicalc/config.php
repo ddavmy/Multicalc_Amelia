@@ -9,7 +9,7 @@ $conf->app_root = '/projekty/Multicalc/public';   # project subfolder in domain 
 # ---- Database config - values required by Medoo
 $conf->db_type = 'mysql';
 $conf->db_server = 'localhost';
-$conf->db_name = 'projekt';
+$conf->db_name = 'multicalc';
 $conf->db_user = 'root';
 $conf->db_pass = '';
 $conf->db_charset = 'utf8';

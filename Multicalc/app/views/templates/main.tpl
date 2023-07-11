@@ -39,14 +39,14 @@
 				<!-- Menu -->
 					<nav id="menu">
 						<h2>Menu</h2> 
-							<h4>Jesteś {$user->login}{if $user->login != "guest"}, {$user->role}{/if}</h4>
+							<h6>Jesteś {$user->login}{if count($conf->roles)>0}, {$user->role}, Twoje ID to: {$user->user_id}{/if}</h6>
 						<ul>
 							<li><a href="{rel_url }">Home</a></li>
-							{if $user->role != "guest"}
+							{if count($conf->roles)>0}
 								<li><a href="{rel_url action="userShow"}">Uzytkownicy</a></li>
 								<li><a href="{rel_url action="logout"}">Wyloguj</a></li>
 							{/if}
-							{if $user->role == "guest"}
+							{if count($conf->roles)==0}
 								<li><a href="{rel_url action="loginShow"}">Zaloguj</a></li>
 								<li><a href="{rel_url action="registerShow"}">Rejestracja</a></li>
 							{/if}

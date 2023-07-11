@@ -25,7 +25,6 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	/* vertical-align: baseline; */
 }
-
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
@@ -199,7 +198,7 @@ input, select, textarea {
 	h2, h3, h4, h5, h6 {
 		font-weight: 900;
 		line-height: 1.5;
-		margin: 0 0 2em 0;
+		margin: 0 0 1em 0;
 		text-transform: uppercase;
 		letter-spacing: 0.35em;
 	}
@@ -2055,7 +2054,7 @@ input, select, textarea {
 /* Form */
 
 	form {
-		margin: 2em 0 2em 0;
+		margin: 2em 0 -2em 0;
 		overflow-x: hidden;
 	}
 
@@ -3353,22 +3352,26 @@ input, select, textarea {
 	/* background-position: center; */
 	background-position: 15% 40%;
 }
-#tilesPoleObw article {
+/* #tilesPoleObw article {
 	width: calc(33.33333% - 10em);
-	/* position: relative; */
 	overflow: hidden;
 	word-break: break-word; 
-	/* font-size: 16px; */
 }
 #tilesPoleObw {
 	justify-content: center;
-}
+} */
 #searchInput {
 	margin-bottom: -2em;
 }
-td .actions {
+#login h2 {
+	margin-top: 3em;
+}
+td .actions, td form {
 	margin: 0;
 	padding: 0;
+}
+ol {
+	margin: 1em 0 1em 0;
 }
 td, tr th{
 	margin-top: 20px;
@@ -3391,7 +3394,7 @@ td .actions{
 }
 .actions {
 	display: flex;
-	  justify-content: center;
+	justify-content: left;
 }
 .userEdit {
 	text-align: center;
